@@ -118,8 +118,15 @@ table {
     disney\.com *
     disneyjunior\.com *
 }
+```
 
-sudo service sniproxy status
-sudo service sniproxy stop
+To start the proxy with the provided initscript we will need to edit
+```
+sudo vi /etc/default/sniproxy.conf  
+```
+set enable 1 and uncomment deamon_args 
+after that, start the proxy with
+
+```
 sudo service sniproxy start
 ```
