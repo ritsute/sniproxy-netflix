@@ -1,8 +1,10 @@
 # sniproxy-netflix
+
 You will need to set up [sniproxy](https://github.com/dlundquist/sniproxy)
 
 For that you will need to install udns first. 
 
+```
 sudo apt-get install autotools-dev cdbs debhelper dh-autoreconf dpkg-dev gettext libev-dev libpcre3-dev libudns-dev pkg-config
 mkdir udns_packaging
 cd udns_packaging
@@ -15,24 +17,31 @@ tar xfz ../udns_0.4-1.debian.tar.gz
 dpkg-buildpackage
 cd ..
 sudo dpkg -i libudns-dev_0.4-1_amd64.deb libudns0_0.4-1_amd64.deb
+```
 
 Setting up sniproxy,
 
+```
 cd ..
 mkdir sniproxy
 cd sniproxy
 git clone https://github.com/dlundquist/sniproxy.git
 ./autogen.sh && ./configure && make check
+```
 
 You should see: # PASS: 18 in green and no skips/fails/errors.
 
+```
 sudo make install
 dpkg-buildpackage
 sudo dpkg -i ../sniproxy_***_amd64.deb
+```
 
 SniProxy is installed.
+
 Configure SNIProxy.
 
+```
 sudo vi /etc/sniproxy.conf
 
 # sniproxy configuration file
@@ -113,4 +122,4 @@ table {
 sudo service sniproxy status
 sudo service sniproxy stop
 sudo service sniproxy start
-
+```
